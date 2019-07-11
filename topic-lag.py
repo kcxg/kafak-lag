@@ -8,7 +8,7 @@ from kafka import TopicPartition
 # https://kafka-python.readthedocs.io/en/master/apidoc/KafkaProducer.html
 bootstrap_server = ['10.39.48.226:9092']
 
-topic_list = ['data_iot_EMS',''
+topic_list = ['data_iot_EMS']
 
 producer = KafkaProducer(bootstrap_servers=bootstrap_server)
 consumer = KafkaConsumer(top,group_id='test_flink_stream_data_iot_EMS_dataclean',bootstrap_servers=bootstrap_server)
