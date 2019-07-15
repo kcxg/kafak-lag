@@ -8,12 +8,13 @@ from kafka import KafkaProducer
 from kafka import TopicPartition
 
 # https://kafka-python.readthedocs.io/en/master/apidoc/KafkaProducer.html
-bootstrap_server = ['10.39.48.226:9092']
+bootstrap_server = ['10.38.97.18:9092']
 
-topic = ['data_iot_EMS', 'data_iot_UES', 'data_iot_HPS']
-group_id = ['test_flink_stream_data_iot_EMS_dataclean',
-            'test_flink_stream_data_iot_UES_dataclean',
-            'test_flink_stream_data_iot_HPS_dataclean',
+topic = ['data_iot_EMS', 'data_iot_UES', 'data_iot_HPS', 'data_bigdata_collection']
+group_id = ['prod_flink_stream_data_iot_EMS_dataclean',
+            'prod_flink_stream_data_iot_UES_dataclean',
+            'prod_flink_stream_data_iot_HPS_dataclean',
+            'prod_flink_stream_data_bigdata_collection_redirect',
             ]
 
 producer = KafkaProducer(bootstrap_servers=bootstrap_server)
@@ -32,11 +33,11 @@ def get_lag():
 
 
 if __name__ == '__main__':
-    host = '10.39.46.4'
+    host = '10.39.46.5'
     port = 8086
     database = 'jmxDB'
 
-    for i in range(3):
+    for i in range(4):
         consumer = KafkaConsumer(topic[i], group_id=group_id[i], bootstrap_servers=bootstrap_server)
         lag = get_lag()
         json_body = [
